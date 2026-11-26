@@ -45,6 +45,11 @@ protected:
 	UPROPERTY(EditAnywhere, Category="Input")
 	UInputAction* LookAction;
 
+	/** Dash Input Action */
+	UPROPERTY(EditAnywhere, Category = "Input")
+	UInputAction* DashAction;
+
+
 	/** Mouse Look Input Action */
 	UPROPERTY(EditAnywhere, Category="Input")
 	UInputAction* MouseLookAction;
@@ -66,6 +71,9 @@ protected:
 
 	/** Called for looking input */
 	void Look(const FInputActionValue& Value);
+
+	void Dashing();
+	float DashDistance = 1000;
 
 public:
 

@@ -65,6 +65,12 @@ void ACPlusPlusCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInput
 
 		// Looking
 		EnhancedInputComponent->BindAction(LookAction, ETriggerEvent::Triggered, this, &ACPlusPlusCharacter::Look);
+
+		
+		// Dashing
+		EnhancedInputComponent->BindAction(DashAction, ETriggerEvent::Triggered, this, &ACPlusPlusCharacter::Dashing);
+
+
 	}
 	else
 	{
@@ -118,6 +124,15 @@ void ACPlusPlusCharacter::DoLook(float Yaw, float Pitch)
 		AddControllerYawInput(Yaw);
 		AddControllerPitchInput(Pitch);
 	}
+
+	
+}
+
+void ACPlusPlusCharacter::Dashing()
+{
+	const FVector ForwardDir = this->GetActorRotation().Vector();
+	LaunchCharacter(ForwardDir * DashDistance, true, true);
+
 }
 
 void ACPlusPlusCharacter::DoJumpStart()
